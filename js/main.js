@@ -33,7 +33,7 @@ function initEnv(){
     // cubeTarget = THREE.ImageUtils.loadTexture( "textures/metal.jpg" );
     // cubeTarget.mapping = THREE.SphericalReflectionMapping;
 
-    cubeTarget = THREE.ImageUtils.loadTexture( "textures/2294472375_24a3b8ef46_o.jpg" );
+    cubeTarget = THREE.ImageUtils.loadTexture( "textures/environment.jpg" );
     cubeTarget.mapping = THREE.EquirectangularReflectionMapping;
     cubeTarget.magFilter = THREE.LinearFilter;
     cubeTarget.minFilter = THREE.LinearMipMapLinearFilter;
@@ -110,9 +110,19 @@ function initRenderer() {
 
 function initControls(){
     controls = new THREE.OrbitControls( camera, renderer.domElement );
-                //controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
-                controls.enableDamping = true;
-                controls.dampingFactor = 0.25;
+    //controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+
+    // How far you can orbit vertically, upper and lower limits.
+    // Range is 0 to Math.PI radians.
+    controls.minPolarAngle = 40 * 0.0174532925; // radians
+    controls.maxPolarAngle = 85 * 0.0174532925; // radians
+
+    // How far you can orbit horizontally, upper and lower limits.
+    // If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
+    controls.minAzimuthAngle = 90 * 0.0174532925; // radians
+    controls.maxAzimuthAngle = 180 * 0.0174532925; // radians
 }
 
 function initLights() {
@@ -199,28 +209,19 @@ function initMesh() {
                     child.geometry.faceVertexUvs[ 1 ] = child.geometry.faceVertexUvs[ 0 ];
 
                     var lm = THREE.ImageUtils.loadTexture('textures/floor_l.png');                    
-                    var aom = THREE.ImageUtils.loadTexture('textures/floor_ao.png');
-                    var wood = THREE.ImageUtils.loadTexture('textures/kussens_shade.png');
+                    var aom = THREE.ImageUtils.loadTexture('textures/floor_ao.png');                    
                     var mat = new THREE.MeshPhongMaterial(
-                            {
-                                color: 0xffffff,
-                                lightMap: lm,
-                                aoMap: aom,
-                                //map: wood,
-                                //lightMapIntensity : 2.75,
-                                //side: THREE.DoubleSide,
-                                //blending : "MultiplyBlending",
-
-                                envMap: cubeTarget,
-                                reflectivity: .3
-                            });                    
+                    {
+                      color: 0xffffff,
+                      lightMap: lm,
+                      aoMap: aom,                      
+                    });                    
 
                     child.material = mat;                   
         
                 }                
-                else if(child.name == 'kussens' || child.name == 'riet' || child.name == 'onderstel'){ 
-                    
-                    console.log(child.geometry.faceVertexUvs)
+                else if(child.name == 'kussens' || child.name == 'riet' || child.name == 'onderstel'){                    
+                    // !!!!! lightmap and aoMap need a second pair of uvs
                     child.geometry.faceVertexUvs[ 1 ] = child.geometry.faceVertexUvs[ 0 ];
 
                     var mat = getMaterial( child.name.toLowerCase() );
