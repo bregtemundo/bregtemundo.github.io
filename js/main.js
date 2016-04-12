@@ -55,6 +55,7 @@ function initScene(){
     //groundMat.color.setHSL( 0.095, 1, 0.75 );
 
     ground = new THREE.Mesh( groundGeo, groundMat );
+    ground.name = "ground";
     ground.rotation.x = -Math.PI/2;
     ground.position.y = -0.005;
     scene.add( ground );
@@ -383,7 +384,7 @@ function changeMaterial() {
          for (var t = 0; t<objsToRemove.length; t++){    
             console.log(objsToRemove.length);        
              if (objsToRemove[t] instanceof THREE.Mesh) {                
-               if (objsToRemove[t].name != "floor") {
+               if (objsToRemove[t].name != "floor" && objsToRemove[t].name != "ground") {
                 var mat = getMaterial(objsToRemove[t].name.toLowerCase());
                 objsToRemove[t].material = mat;               
                 objsToRemove[t].material.needsUpdate = true;                
