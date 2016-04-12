@@ -50,8 +50,8 @@ function initScene(){
 
     // GROUND
 
-    var groundGeo = new THREE.PlaneBufferGeometry( 1000, 1000 );
-    var groundMat = new THREE.MeshPhongMaterial( { color: 0xeaeaea, specular: 0xffffff } );
+    var groundGeo = new THREE.PlaneBufferGeometry( 1000, 400 );
+    var groundMat = new THREE.MeshBasicMaterial( { color: 0xffffffff} );
     //groundMat.color.setHSL( 0.095, 1, 0.75 );
 
     ground = new THREE.Mesh( groundGeo, groundMat );
@@ -85,12 +85,12 @@ function initScene(){
 
 function initCamera() {
     
-   camera = new THREE.PerspectiveCamera(45/6, window.innerWidth / window.innerHeight, 1,  1000);   
-         camera.position.x = -7;
-         camera.position.y = 5;
-         camera.position.z = -6;
+   camera = new THREE.PerspectiveCamera(15.3, window.innerWidth / window.innerHeight, 1,  1000);   
+         camera.position.x = 0;
+         camera.position.y = 4.1;
+         camera.position.z = -7.3;
          //camera.up = new THREE.Vector3(0, 0, 1);
-         var target = new THREE.Vector3(0.000, 0.000, 0.000);
+         var target = new THREE.Vector3(0.000, 0.000, -1);
          //camera.up = new THREE.Vector3( 0, 0, 1 );
          camera.lookAt(target);
 
@@ -103,7 +103,7 @@ function initRenderer() {
     renderer.setSize(WIDTH, HEIGHT);
     renderer.setClearColor(0xffffff, 1);
     renderer.gammaInput = true;
-                renderer.gammaOutput = true;
+    renderer.gammaOutput = true;
 
     
 }
@@ -119,10 +119,12 @@ function initControls(){
     controls.minPolarAngle = 40 * 0.0174532925; // radians
     controls.maxPolarAngle = 85 * 0.0174532925; // radians
 
+    /*
     // How far you can orbit horizontally, upper and lower limits.
     // If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
     controls.minAzimuthAngle = 90 * 0.0174532925; // radians
-    controls.maxAzimuthAngle = 180 * 0.0174532925; // radians
+    controls.maxAzimuthAngle = 250 * 0.0174532925; // radians
+    */
 }
 
 function initLights() {
@@ -147,12 +149,12 @@ function initLights() {
 
     //
 
-    dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
-    dirLight.color.setHSL( 0.1, 1, 0.95 );
-    dirLight.position.set( -1, 1.75, 1 );
-    dirLight.position.multiplyScalar( 50 );
-    scene.add( dirLight );
-
+    dirLight = new THREE.DirectionalLight( 0xCFF6FB, 1 );
+    //dirLight.color.setHSL( 0.1, 1, 0.95 );
+    dirLight.position.set( -11, 30, 4 );
+    dirLight.position.multiplyScalar( 20 );
+    //scene.add( dirLight );
+/*
     dirLight.castShadow = true;
 
     dirLight.shadowMapWidth = 2048;
@@ -167,7 +169,7 @@ function initLights() {
 
     dirLight.shadowCameraFar = 3500;
     dirLight.shadowBias = -0.0001;
-    //dirLight.shadowCameraVisible = true;
+    //dirLight.shadowCameraVisible = true;*/
 }
 
 var mesh = null;
@@ -249,9 +251,7 @@ function initMesh() {
         }
         
 
-
-        var axisHelper = new THREE.AxisHelper( 5 );
-scene.add( axisHelper );
+      
 
 
         initControls();
