@@ -140,6 +140,10 @@ function initLights() {
      light.position.set(0.000, 156.340, 156.340);
      scene.add(light);
 
+     light = new THREE.PointLight(0xCFF6FB);
+     light.position.set(-11, 20, -140);
+     scene.add(light);
+
     // LIGHTS
 
     hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
@@ -151,9 +155,9 @@ function initLights() {
     //
 
     dirLight = new THREE.DirectionalLight( 0xCFF6FB, 1 );
-    //dirLight.color.setHSL( 0.1, 1, 0.95 );
-    dirLight.position.set( -11, 30, 4 );
-    dirLight.position.multiplyScalar( 20 );
+    dirLight.color.setHSL( 0.1, 1, 0.95 );
+    dirLight.position.set( -11, 30, -14 );
+    dirLight.position.multiplyScalar( 150 );
     //scene.add( dirLight );
 /*
     dirLight.castShadow = true;
@@ -170,7 +174,8 @@ function initLights() {
 
     dirLight.shadowCameraFar = 3500;
     dirLight.shadowBias = -0.0001;
-    //dirLight.shadowCameraVisible = true;*/
+    dirLight.shadowCameraVisible = true;
+    */
 }
 
 var mesh = null;
@@ -336,7 +341,7 @@ function getMaterial(part){
   var mat = new THREE.MeshPhongMaterial(
     {
       color: color,
-      lightMap: lm,
+      //lightMap: lm,
       aoMap: aom,
       map: map,
       bumpMap: bump,
