@@ -156,7 +156,7 @@ function initLights() {
 
     dirLight = new THREE.DirectionalLight( 0xCFF6FB, 1 );
     dirLight.color.setHSL( 0.1, 1, 0.95 );
-    dirLight.position.set( -11, 30, -14 );
+    dirLight.position.set( 0, 10, 0 );
     dirLight.position.multiplyScalar( 150 );
     //scene.add( dirLight );
 /*
@@ -341,13 +341,13 @@ function getMaterial(part){
   var mat = new THREE.MeshPhongMaterial(
     {
       color: color,
-      //lightMap: lm,
+      lightMap: lm,
       aoMap: aom,
       map: map,
       bumpMap: bump,
       bumpScale: bumpScale,
       //aoMapIntensity : 1.2,
-      //lightMapIntensity : 2.75,
+      lightMapIntensity : 1.15,
       //side: THREE.SingleSide,
       blending : "MultiplyBlending",
 
