@@ -347,7 +347,7 @@ function getMaterial(part){
       bumpMap: bump,
       bumpScale: bumpScale,
       //aoMapIntensity : 1.2,
-      lightMapIntensity : 1.15,
+      lightMapIntensity : 1.05,
       //side: THREE.SingleSide,
       blending : "MultiplyBlending",
 
