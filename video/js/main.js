@@ -10,6 +10,10 @@
         
     });
 
+    //fix ios video
+    var video = document.getElementById('video');
+    window.enableInlineVideo(video, {iPad: true});
+
     // init controls
   	var controlLayer = document.getElementById('control-layer');
 
