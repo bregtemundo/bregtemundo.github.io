@@ -18,8 +18,7 @@
   	var controlLayer = document.getElementById('control-layer');
 
   	var hammertime = new Hammer(controlLayer);
-  	hammertime.on('swipe', function(ev) {
-  		alert("swipe");
+  	hammertime.on('tap', function(ev) {  		
       videoPlayer.play();
   	});
 
