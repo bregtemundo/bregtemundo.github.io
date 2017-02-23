@@ -19,7 +19,7 @@
 
   	var hammertime = new Hammer(controlLayer);
   	hammertime.on('swipe', function(ev) {
-  		console.log(ev);
+  		alert("swipe");
       videoPlayer.play();
   	});
 
